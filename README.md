@@ -103,3 +103,6 @@ X(旧Twitter)などのSNSにシェアする機能を実装し、シェアされ�
 
 ## 画面遷移図
 https://www.figma.com/file/VpMBvdLAilFewgY4FRFdyp/JikoGa-Museum?type=design&node-id=0-1&mode=design&t=wHknOIwVei9Vln6Q-0
+
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/ffbc0eb72ab1f3d63b38a869146f5366.png)](https://gyazo.com/ffbc0eb72ab1f3d63b38a869146f5366)
