@@ -8,10 +8,10 @@
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li>
-            <%= link_to 'ホーム', root_path %>
-            <%= link_to 'みんなの事故画を見る', '#' %>
-            <%= link_to 'ログイン', login_path %>
-            <%= link_to '会員登録', new_user_path %>
+            <%= link_to t('header.home'), root_path %>
+            <%= link_to t('header.post_index'), '#' %>
+            <%= link_to t('header.login'), login_path %>
+            <%= link_to t('header.register'), new_user_path %>
           </li>
         </ul>
       </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="navbar-end">
       <div class="flex-none gap-2">
-        <%= link_to 'ログイン', login_path, class: 'btn btn-primary' %>
+        <%= link_to t('header.login'), login_path, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
