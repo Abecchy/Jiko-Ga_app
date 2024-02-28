@@ -4,7 +4,9 @@
     <div>
       <h1 class="text-5xl font-bold">事故画美術館へようこそ</h1>
       <p class="py-6">かわいいペットの事故画を共有しよう！</p>
-      <%= link_to t('.register'), new_user_path, class: 'btn btn-primary' %>
+      <% unless logged_in? %>
+        <%= link_to t('.register'), new_user_path, class: 'btn btn-primary' %>
+      <% end %>
     </div>
   </div>
 </div>

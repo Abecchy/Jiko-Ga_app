@@ -4,7 +4,7 @@
       <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl"><%= t('.title') %></h2>
     </div>
 
-    <%= form_with model: @user, url: login_path, class: 'mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2' do |f| %>
+    <%= form_with url: login_path, class: 'mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2' do |f| %>
       <div class="sm:col-span-2">
         <%= f.label :email, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
         <%= f.email_field :email, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
