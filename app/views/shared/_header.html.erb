@@ -10,7 +10,7 @@
           <li>
             <%= link_to t('header.home'), root_path %>
             <%= link_to t('header.post_index'), posts_path %>
-            <%= link_to t('header.create_post'), '#' %>
+            <%= link_to t('header.create_post'), new_post_path %>
             <%= link_to t('header.user_index'), '#' %>
             <%= link_to t('header.profile'), '#' %>
             <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %>

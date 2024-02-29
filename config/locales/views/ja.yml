@@ -8,7 +8,7 @@ ja:
     login: ログイン
     logout: ログアウト
     create: 作成
-    post: 投稿
+    post: 投稿する
     show: 詳細
     edit: 編集
     delete: 削除
@@ -61,3 +61,5 @@ ja:
     index:
       title: 事故画一覧
       no_result: 事故画がありません
+    new:
+      title: 事故画投稿
