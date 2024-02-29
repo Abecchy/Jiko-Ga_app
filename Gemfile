@@ -51,6 +51,9 @@ gem 'sorcery'
 # 日本語化対応
 gem 'rails-i18n', '~> 7.0.0'
 
+# 画像アップロード
+gem 'carrierwave'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
