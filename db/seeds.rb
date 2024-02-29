@@ -14,6 +14,7 @@ end
   Post.create!(
     title: Faker::Games::Pokemon.unique.name,
     body: "#{Faker::Games::Pokemon.move} を繰り出した！",
+    post_image: File.open('app/assets/images/post_image.jpeg'),
     user_id: user.id
   )
 end
