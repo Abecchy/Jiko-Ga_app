@@ -13,7 +13,9 @@ ja:
     edit: 編集
     delete: 削除
     search_word: 検索ワード
+    delete_confirm: 削除しますか？
     back: 戻る
+    input_comment: コメントを入力...
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"
@@ -21,7 +23,6 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
-      delete_confirm: 削除しますか？
   header:
     home: ホーム
     post_index: みんなの事故画を見る
@@ -64,5 +65,8 @@ ja:
       no_result: 事故画がありません
     show:
       title: 事故画詳細
+      edit: 編集する
+      delete: 削除する
+      no_result: コメントはまだありません
     new:
       title: 事故画投稿
