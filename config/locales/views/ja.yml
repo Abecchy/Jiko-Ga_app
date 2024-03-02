@@ -24,8 +24,6 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
-      like: いいねしました
-      unlike: いいねを取り消しました
   header:
     home: ホーム
     post_index: みんなの事故画を見る
