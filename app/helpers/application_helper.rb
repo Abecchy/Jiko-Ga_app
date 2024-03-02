@@ -1,4 +1,9 @@
 module ApplicationHelper
+  def full_title(page_title = '')
+    base_title = 'JikogArtMuseum'
+    page_title.empty? ? base_title : "#{page_title} | #{base_title}"
+  end
+
   def flash_background_color(type)
     case type.to_sym
     when :success then 'bg-green-100 border border-green-400 text-green-700'
