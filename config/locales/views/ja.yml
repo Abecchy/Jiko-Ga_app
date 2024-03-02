@@ -8,13 +8,14 @@ ja:
     login: ログイン
     logout: ログアウト
     create: 作成
-    post: 投稿する
+    post: 投稿
     show: 詳細
     edit: 編集
     delete: 削除
     search_word: 検索ワード
     delete_confirm: 削除しますか？
     back: 戻る
+    cancel: キャンセル
     input_comment: コメントを入力...
     flash_message:
       require_login: ログインしてください
@@ -70,3 +71,5 @@ ja:
       no_result: コメントはまだありません
     new:
       title: 事故画投稿
+    edit:
+      title: 事故画編集
