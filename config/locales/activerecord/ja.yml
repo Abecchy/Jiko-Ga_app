@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       post: 投稿
       comment: コメント
+      like: いいね
     attributes:
       user:
         name: お名前
