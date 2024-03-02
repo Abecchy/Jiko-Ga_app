@@ -10,8 +10,8 @@ ja:
     create: 作成
     post: 投稿
     show: 詳細
-    edit: 編集
-    delete: 削除
+    edit: 編集する
+    delete: 削除する
     search_word: 検索ワード
     delete_confirm: 削除しますか？
     back: 戻る
@@ -24,6 +24,8 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
+      like: いいねしました
+      unlike: いいねを取り消しました
   header:
     home: ホーム
     post_index: みんなの事故画を見る
@@ -31,7 +33,7 @@ ja:
     register: 会員登録
     create_post: 事故画を投稿する
     user_index: ユーザー一覧
-    profile: プロフィール
+    like_index: いいね一覧
     logout: ログアウト
   footer:
     terms_of_service: 利用規約
@@ -66,10 +68,11 @@ ja:
       no_result: 事故画がありません
     show:
       title: 事故画詳細
-      edit: 編集する
-      delete: 削除する
       no_result: コメントはまだありません
     new:
       title: 事故画投稿
     edit:
       title: 事故画編集
+    likes:
+      title: いいね一覧
+      no_result: いいねした事故画はありません
