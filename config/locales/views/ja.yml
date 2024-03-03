@@ -24,6 +24,16 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
+    pagination:
+      first: "<<"
+      previous: "<"
+      next: ">"
+      last: ">>"
+      truncate: "..."
+    first_page: 最初のページ
+    prev_page: 前のページ
+    next_page: 次のページ
+    last_page: 最後のページ
   header:
     home: ホーム
     post_index: みんなの事故画を見る

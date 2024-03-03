@@ -1,0 +1,3 @@
+<li class="tooltip" data-tip=<%= t('defaults.last_page') %>>
+  <%= link_to_unless current_page.last?, t('defaults.pagination.last').html_safe, url, rel: 'last', remote: remote, class: 'join-item btn btn-square' %>
+</li>
