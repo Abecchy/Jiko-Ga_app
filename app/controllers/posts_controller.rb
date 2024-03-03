@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   end
 
   def likes
-    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc)
+    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   private
