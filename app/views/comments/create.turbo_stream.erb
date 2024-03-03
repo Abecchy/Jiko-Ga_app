@@ -1,0 +1,15 @@
+<% if @comment.errors.present? %>
+  <%= turbo_stream.replace 'comment-form' do %>
+    <%= render 'form', post: @comment.post, comment: @comment %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove 'no-result' %>
+
+  <%= turbo_stream.append 'table-comment' do %>
+    <%= render 'comment', comment: @comment %>
+  <% end %>
+
+  <%= turbo_stream.replace 'comment-form' do %>
+    <%= render 'form', post: @comment.post, comment: Comment.new %>
+  <% end %>
+<% end %>
