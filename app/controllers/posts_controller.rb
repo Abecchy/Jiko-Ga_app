@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc).page(params[:page])
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -48,7 +49,8 @@ class PostsController < ApplicationController
   end
 
   def likes
-    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc).page(params[:page])
+    @q = current_user.like_posts.ransack(params[:q])
+    @like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   private

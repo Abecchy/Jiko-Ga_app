@@ -5,13 +5,17 @@
     <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl"><%= t('.title') %></h2>
   </div>
 
+  <div class="m-8 y-8">
+    <%= render 'search_form', q: @q, url: likes_posts_path %>
+  </div>
+
   <% if @like_posts.present? %>
-    <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="m-8 flex grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3">
       <%= render partial: 'post', collection: @like_posts %>
     </div>
   <% else %>
     <div class="text-center font-bold text-gray-500"><%= t('.no_result') %></div>
   <% end %>
 
-  <%= paginate @posts %>
+  <%= paginate @like_posts %>
 </div>
