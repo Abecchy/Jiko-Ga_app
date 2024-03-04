@@ -17,6 +17,9 @@ ja:
     back: 戻る
     cancel: キャンセル
     input_comment: コメントを入力...
+    password_reset: パスワード再設定
+    new_password: 新しいパスワード
+    new_password_confirmation: 新しいパスワード確認
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"
@@ -89,3 +92,14 @@ ja:
       title: プロフィール
     edit:
       title: プロフィール編集
+  password_resets:
+    new:
+      title: パスワード再設定申請
+      submit: 送信する
+    edit:
+      title: パスワード再設定
+    create:
+      success: パスワード再設定用メールを送信しました
+    update:
+      success: パスワードを変更しました
+      failure: パスワードを変更できませんでした

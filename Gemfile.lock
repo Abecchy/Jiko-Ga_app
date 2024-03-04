@@ -89,6 +89,8 @@ GEM
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.2.3)
+    config (5.3.0)
+      deep_merge (~> 1.2, >= 1.2.1)
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
@@ -97,6 +99,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
+    deep_merge (1.2.2)
     diff-lcs (1.5.1)
     erubi (1.12.0)
     factory_bot (6.4.6)
@@ -144,6 +147,15 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.9.0)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -335,6 +347,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   carrierwave
+  config
   cssbundling-rails
   debug
   factory_bot_rails
@@ -342,6 +355,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
+  letter_opener_web (~> 2.0)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
