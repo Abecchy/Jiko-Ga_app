@@ -84,3 +84,8 @@ ja:
     likes:
       title: いいね一覧
       no_result: いいねした事故画はありません
+  profiles:
+    show:
+      title: プロフィール
+    edit:
+      title: プロフィール編集

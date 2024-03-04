@@ -1,0 +1,23 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mb-10 md:mb-16">
+      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl"><%= t('.title') %></h2>
+    </div>
+
+    <div class="mx-auto grid max-w-screen-md gap-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex justify-end px-4 pt-4">
+        <%= link_to t('defaults.edit'), edit_profile_path, class: 'btn btn-primary' %>
+      </div>
+
+      <div class="flex flex-col items-center pb-10">
+        <%= image_tag current_user.avatar.url, class: 'w-24 h-24 mb-3 rounded-full shadow-lg' %>
+
+        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%= current_user.name %></h5>
+
+        <span class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></span>
+      </div>
+    </div>
+  </div>
+</div>

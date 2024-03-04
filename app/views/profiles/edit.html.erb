@@ -1,0 +1,39 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mb-10 md:mb-16">
+      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl"><%= t('.title') %></h2>
+    </div>
+
+    <%= form_with model: @user, url: profile_path, method: :put, class: 'mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2' do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div class="sm:col-span-2">
+        <%= f.label :name, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
+        <%= f.text_field :name, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+      </div>
+
+      <div class="sm:col-span-2">
+        <%= f.label :email, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
+        <%= f.email_field :email, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+      </div>
+
+      <div class="sm:col-span-2">
+        <%= f.label :avatar, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
+        <%= f.file_field :avatar, class: 'mb-4 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring', accept: 'image/*' %>
+        <%= f.hidden_field :avatar_cache %>
+
+        <div class="sm:col-span-2">
+          <%= image_tag @user.avatar.url, class: 'mb-2 w-24 h-24 rounded-full', id: 'preview' %>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between sm:col-span-2">
+        <%= f.submit class: 'btn btn-primary' %>
+
+        <%= link_to t('defaults.cancel'), profile_path, class: 'btn btn-outline' %>
+      </div>
+    <% end %>
+  </div>
+</div>
