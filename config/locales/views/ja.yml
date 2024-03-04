@@ -12,7 +12,7 @@ ja:
     show: 詳細
     edit: 編集する
     delete: 削除する
-    search_word: 検索ワード
+    search_word: タイトル、状況で検索
     delete_confirm: 削除しますか？
     back: 戻る
     cancel: キャンセル
