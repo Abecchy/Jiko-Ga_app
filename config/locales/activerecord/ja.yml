@@ -5,6 +5,7 @@ ja:
       post: 投稿
       comment: コメント
       like: いいね
+      pet: ペット
     attributes:
       user:
         name: お名前
@@ -18,3 +19,13 @@ ja:
         post_image: 事故画
       comment:
         body: コメント
+      pet:
+        name: お名前
+        age: 年齢
+        gender: 性別
+        pet_avatar: ペット画像
+  enums:
+    pet:
+      gender:
+        male: 男の子
+        female: 女の子

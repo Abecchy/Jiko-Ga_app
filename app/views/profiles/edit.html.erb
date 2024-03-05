@@ -29,6 +29,14 @@
         </div>
       </div>
 
+      <div class="mb-10 md:mb-16">
+        <h2 class="mb-4 text-center text-xl font-bold text-gray-800 md:mb-6 lg:text-xl"><%= t('defaults.pet_profile') %></h2>
+      </div>
+
+      <%= f.fields_for :pets do |pet_f| %>
+        <%= render 'pet_fields', f: pet_f %>
+      <% end %>
+
       <div class="flex items-center justify-between sm:col-span-2">
         <%= f.submit class: 'btn btn-primary' %>
 

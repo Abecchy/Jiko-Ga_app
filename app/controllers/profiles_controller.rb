@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @user = User.find(current_user.id)
+    @pet = @user.pets.build
   end
 
   def update
@@ -19,6 +20,6 @@ class ProfilesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, :avatar_cache)
+    params.require(:user).permit(:name, :email, :avatar, :avatar_cache, pets_attributes: [:id, :name, :age, :gender, :pet_avatar, :pet_avatar_cache, :_destroy])
   end
 end
