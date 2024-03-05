@@ -18,6 +18,24 @@
 
         <span class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></span>
       </div>
+
+      <% if current_user.pets.present? %>
+        <div class="mb-4 md:mb-6">
+          <h2 class="text-center text-xl font-bold text-gray-800 lg:text-xl"><%= t('defaults.pet_profile') %></h2>
+        </div>
+
+        <% current_user.pets.each do |pet| %>
+          <div class="flex flex-col items-center pb-10">
+            <%= image_tag pet.pet_avatar.url, class: 'w-24 h-24 mb-3 rounded-full shadow-lg' %>
+
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+              <p><%= pet.name %></p>
+              <p><%= pet.age %> 才</p>
+              <p><%= pet.gender_i18n %></p>
+            </h5>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
