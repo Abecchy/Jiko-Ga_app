@@ -65,6 +65,9 @@ gem 'ransack'
 # 環境設定
 gem 'config'
 
+# OpenAI
+gem 'ruby-openai'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
