@@ -19,6 +19,8 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
 
+    @post.title = OpenAi.generate_title(@post.body, @post.post_image)
+
     if @post.save
       redirect_to posts_path, success: t('defaults.flash_message.created', item: Post.model_name.human)
     else

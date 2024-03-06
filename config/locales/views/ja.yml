@@ -8,9 +8,10 @@ ja:
     login: ログイン
     logout: ログアウト
     create: 作成
-    post: 投稿
+    post: 投稿する
     show: 詳細
     edit: 編集する
+    update: 更新する
     delete: 削除する
     search_word: タイトル、状況で検索
     delete_confirm: 削除しますか？
