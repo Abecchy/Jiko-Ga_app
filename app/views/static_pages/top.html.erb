@@ -13,37 +13,27 @@
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    <div class="mb-10 md:mb-16">
-      <h2 class="mb-4 text-left text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl"><%= t('.new_posts') %></h2>
-      <div class="carousel w-full">
-        <div id="slide1" class="carousel-item relative w-full">
-          <img src="https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg" class="w-full" />
-          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide4" class="btn btn-circle">❮</a>
-            <a href="#slide2" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-        <div id="slide2" class="carousel-item relative w-full">
-          <img src="https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg" class="w-full" />
-          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide1" class="btn btn-circle">❮</a>
-            <a href="#slide3" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-        <div id="slide3" class="carousel-item relative w-full">
-          <img src="https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg" class="w-full" />
-          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide2" class="btn btn-circle">❮</a>
-            <a href="#slide4" class="btn btn-circle">❯</a>
-          </div>
-        </div>
-        <div id="slide4" class="carousel-item relative w-full">
-          <img src="https://daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg" class="w-full" />
-          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide3" class="btn btn-circle">❮</a>
-            <a href="#slide1" class="btn btn-circle">❯</a>
-          </div>
-        </div>
+    <h2 class="absolute mb-8 text-left text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl"><%= t('.new_posts') %></h2>
+
+    <%= link_to t('.more'), posts_path, class: 'btn btn-link absolute end-2.5 mb-8 text-xl md:mb-12 lg:text-2xl' %>
+  </div>
+
+  <div class="carousel w-full pt-24">
+    <div id="slide1" class="carousel-item relative w-full">
+      <div class="m-8 mx-auto flex grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3">
+        <% @new_posts.each do |new_post| %>
+          <%= link_to post_path(new_post) do %>
+            <div class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+              <%= image_tag new_post.post_image.url, class: 'absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110' %>
+
+              <div class="relative flex w-full flex-col rounded-lg p-4 text-center glass">
+                <span class="text-gray-800"><%= new_post.user.name %></span>
+                <span class="text-lg font-bold text-gray-800 lg:text-xl"><%= new_post.title %></span>
+                <span class="text-gray-800"><%= l new_post.created_at, format: :long %></span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
