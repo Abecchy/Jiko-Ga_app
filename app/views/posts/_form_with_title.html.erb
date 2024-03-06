@@ -24,10 +24,6 @@
   <div class="flex items-center justify-between sm:col-span-2">
     <%= f.submit t('defaults.update'), class: 'btn btn-primary' %>
 
-    <% if post.body.present? %>
-      <%= link_to t('defaults.cancel'), post_path(post), class: 'btn btn-outline' %>
-    <% else %>
-      <%= link_to t('defaults.cancel'), posts_path, class: 'btn btn-outline' %>
-    <% end %>
+    <%= link_to t('defaults.cancel'), post_path(post), class: 'btn btn-outline' %>
   </div>
 <% end %>
