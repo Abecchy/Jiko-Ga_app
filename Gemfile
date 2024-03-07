@@ -68,6 +68,11 @@ gem 'config'
 # OpenAI
 gem 'ruby-openai'
 
+# 画像永続保存
+gem 'fog-aws'
+
+gem "aws-sdk-s3", require: false
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
