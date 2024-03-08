@@ -1,19 +1,23 @@
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col lg:flex-row-reverse">
-    <%= image_tag 'kinako_top.jpeg', class: "max-w-sm rounded-lg shadow-2xl" %>
+    <%= image_tag 'top.png', class: "max-w-sm rounded-lg shadow-2xl" %>
     <div>
-      <h1 class="text-5xl font-bold">事故画美術館へようこそ</h1>
-      <p class="py-6">かわいいペットの事故画を共有しよう！</p>
+      <h1 class="text-5xl font-bold">Welcome to<br>JikogArtMuseum!</h1>
+      <p class="py-6">
+        〜ペットの無邪気なハプニングで癒されたいあなたへ〜
+      </p>
       <% unless logged_in? %>
-        <%= link_to t('.register'), new_user_path, class: 'btn btn-primary' %>
+        <%= link_to t('.register'), new_user_path, class: 'btn btn-accent' %>
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="bg-white py-6 sm:py-8 lg:py-12">
+<div class="divider divider-accent"></div>
+
+<div class="py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    <h2 class="absolute mb-8 text-left text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl"><%= t('.new_posts') %></h2>
+    <h2 class="absolute mb-8 text-left text-2xl font-bold md:mb-12 lg:text-3xl"><%= t('.new_posts') %></h2>
 
     <%= link_to t('.more'), posts_path, class: 'btn btn-link absolute end-2.5 mb-8 text-xl md:mb-12 lg:text-2xl' %>
   </div>
@@ -39,16 +43,42 @@
   </div>
 </div>
 
-<div class="bg-white py-6 sm:py-8 lg:py-12">
+<div class="divider divider-accent"></div>
+
+<div class="py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     <div class="mb-10 md:mb-16">
-      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">事故画美術館へようこそ！</h2>
+      <h2 class="mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">事故画美術館へようこそ！</h2>
 
-      <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-        ここでは、皆さんが飼っているペットたちの<strong>「事故画作品」</strong>を鑑賞できます。<br>
-        偶然撮影されたあなたのペットの<strong>白目</strong>や<strong>変な顔</strong>、<strong>寝相の悪さ</strong>などの<br>
-        愛くるしい写真を、ぜひこの美術館に展示してみませんか？
+      <p class="mx-auto max-w-screen-md text-center text-gray-400 md:text-lg">
+        ここでは、かわいいペットたちの<strong>『事故画作品』</strong>を鑑賞できます。
+        <br>
+        <br>
+        ペットの日常には、思わぬハプニングがつきものですよね？<br>
+        そんな愛らしいアクシデントを共有しませんか？
+        <br>
+        <br>
+        <strong>『事故画美術館』</strong>は<br>
+        あなたの愛するペットのかわいい失敗やユーモラスな瞬間をシェアするためのアプリです。
+        <br>
+        <br>
+        事故画とそのシチュエーションを入力すると<br>
+        AIがユニークなタイトルをつけてくれます！
+        <br>
+        <br>
+        白目や寝顔、変顔など、思わず笑ってしまう事故画をお楽しみください！<br>
+        一緒に笑い、癒しを共有しましょう。
       </p>
+      <br>
+      <h2 class="mb-4 text-center text-xl font-bold md:mb-6 lg:text-2xl">
+        さあ、あなたのペットのおしゃれな事故画をぜひこの美術館に展示してみませんか？
+      </h2>
+
+      <% unless logged_in? %>
+        <div class="flex justify-center">
+          <%= link_to t('.register'), new_user_path, class: 'btn btn-accent' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

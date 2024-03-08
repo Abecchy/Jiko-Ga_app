@@ -18,12 +18,27 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    post_count = current_user.posts.created_today.count
 
-    @post.title = OpenAi.generate_title(@post.body, @post.post_image) if @post.body.present? && @post.post_image.present?
-
-    if @post.save
-      redirect_to posts_path, success: t('defaults.flash_message.created', item: Post.model_name.human)
+    if @post.post_image.present? && @post.body.present?
+      if post_count < 3
+        @post.title = OpenAi.generate_title(@post.body, @post.post_image) if @post.post_image.present? && @post.body.present?
+        @post.save
+        redirect_to posts_path, success: t('defaults.flash_message.created', item: Post.model_name.human)
+      else
+        redirect_to posts_path, danger: t('defaults.flash_message.limit')
+      end
+    elsif @post.post_image.blank? && @post.body.blank?
+      @post.errors.add(:post_image, 'を選択してください')
+      @post.errors.add(:body, 'を入力してください')
+      flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
+      render :new, status: :unprocessable_entity
+    elsif @post.body.present?
+      @post.errors.add(:post_image, 'を選択してください')
+      flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
+      render :new, status: :unprocessable_entity
     else
+      @post.errors.add(:body, 'を入力してください')
       flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
