@@ -4,6 +4,8 @@
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     <div class="mb-10 md:mb-16">
       <h2 class="mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl"><%= t('.title') %></h2>
+
+      <p class="mb-4 text-center md:mb-6">(*は必須項目です)</p>
     </div>
 
     <%= form_with model: @user, class: 'mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2' do |f| %>
@@ -15,22 +17,22 @@
       </div>
 
       <div class="sm:col-span-2">
-        <%= f.label :name, class: 'mb-2 inline-block text-sm sm:text-base' %>
+        <%= f.label :name, class: 'mb-2 inline-block text-sm sm:text-base' %>*
         <%= f.text_field :name, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
       </div>
 
       <div class="sm:col-span-2">
-        <%= f.label :email, class: 'mb-2 inline-block text-sm sm:text-base' %>
-        <%= f.email_field :email, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+        <%= f.label :email, class: 'mb-2 inline-block text-sm sm:text-base' %>*
+        <%= f.email_field :email, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', placeholder: '正しいメールアドレスを入力してください' %>
       </div>
 
       <div class="sm:col-span-2">
-        <%= f.label :password, class: 'mb-2 inline-block text-sm sm:text-base' %>
-        <%= f.password_field :password, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+        <%= f.label :password, class: 'mb-2 inline-block text-sm sm:text-base' %>*
+        <%= f.password_field :password, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', placeholder: '6文字以上で入力してください' %>
       </div>
 
       <div class="sm:col-span-2">
-        <%= f.label :password_confirmation, class: 'mb-2 inline-block text-sm sm:text-base' %>
+        <%= f.label :password_confirmation, class: 'mb-2 inline-block text-sm sm:text-base' %>*
         <%= f.password_field :password_confirmation, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
       </div>
 
