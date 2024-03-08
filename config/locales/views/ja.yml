@@ -18,6 +18,7 @@ ja:
     back: 戻る
     cancel: キャンセル
     pet_profile: ペットプロフィール
+    edit_pet_profile: ペットプロフィール編集
     input_comment: コメントを入力...
     password_reset: パスワード再設定
     new_password: 新しいパスワード
@@ -29,6 +30,7 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新出来ませんでした"
       deleted: "%{item}を削除しました"
+      limit: 投稿回数の制限に達しているため、投稿を作成できませんでした
     pagination:
       first: "<<"
       previous: "<"
@@ -57,6 +59,10 @@ ja:
       register: 会員登録
       new_posts: 新着事故画
       more: もっと見る
+    terms_of_service:
+      title: 利用規約
+    privacy_policy:
+      title: プライバシーポリシー
   users:
     new:
       title: 会員登録

@@ -1,27 +1,23 @@
-<div class="pet_fields">
-  <div class="sm:col-span-2">
-    <%= f.label :name, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
-    <%= f.text_field :name, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+<div class="pet_fields mb-20">
+  <div class="sm:col-span-2 mb-4">
+    <%= f.label :name, class: 'mb-2 inline-block text-sm sm:text-base' %>
+    <%= f.text_field :name, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
   </div>
 
-  <div class="sm:col-span-2">
-    <%= f.label :age, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
-    <%= f.number_field :age, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+  <div class="sm:col-span-2 mb-4">
+    <%= f.label :age, class: 'mb-2 inline-block text-sm sm:text-base' %>
+    <%= f.number_field :age, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
   </div>
 
-  <div class="sm:col-span-2">
-    <%= f.label :gender, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
-    <%= f.select :gender, Pet.genders_i18n.invert, include_blank: '選択してください', class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+  <div class="sm:col-span-2 mb-4">
+    <%= f.label :gender, class: 'mb-2 inline-block text-sm sm:text-base' %>
+    <%= f.select :gender, Pet.genders_i18n.invert, include_blank: '選択してください', class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
   </div>
 
-  <div class="sm:col-span-2">
-    <%= f.label :pet_avatar, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
-    <%= f.file_field :pet_avatar, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring', accept: 'image/*' %>
+  <div class="sm:col-span-2 mb-4">
+    <%= f.label :pet_avatar, class: 'mb-2 inline-block text-sm sm:text-base' %>
+    <%= f.file_field :pet_avatar, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', accept: 'image/*' %>
     <%= f.hidden_field :pet_avatar_cache %>
-
-    <div class="sm:col-span-2">
-      <%= image_tag @pet.pet_avatar.url, class: 'mb-2 w-24 h-24 rounded-full', id: 'preview' %>
-    </div>
   </div>
 
   <%= f.check_box :_destroy %>

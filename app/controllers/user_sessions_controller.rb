@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to root_path, success: t('.success')
+      redirect_back fallback_location: root_path, success: t('.success')
     else
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity

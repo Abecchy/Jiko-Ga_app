@@ -2,8 +2,8 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="sm:col-span-2">
-    <%= f.label :post_image, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
-    <%= f.file_field :post_image, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring', accept: 'image/*' %>
+    <%= f.label :post_image, class: 'mb-2 inline-block text-sm sm:text-base' %>
+    <%= f.file_field :post_image, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', accept: 'image/*' %>
     <%= f.hidden_field :post_image_cache %>
   </div>
 
@@ -12,17 +12,20 @@
   </div>
 
   <div class="sm:col-span-2">
-    <%= f.label :body, class: 'mb-2 inline-block text-sm text-gray-800 sm:text-base' %>
-    <%= f.text_area :body, class: 'w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring', row: '10', style: 'height: 200px' %>
+    <%= f.label :body, class: 'mb-2 inline-block text-sm sm:text-base' %>
+    <%= f.text_area :body, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', row: '10', style: 'height: 200px' %>
   </div>
 
   <div class="flex items-center justify-between sm:col-span-2">
-    <%= f.submit t('defaults.post'), class: 'btn btn-primary' %>
+    <%= f.submit t('defaults.post'), class: 'btn btn-accent' %>
 
     <%= link_to t('defaults.cancel'), posts_path, class: 'btn btn-outline' %>
   </div>
 
-  <div class="flex items-center justify-between sm:col-span-2 text-gray-500">
-    <p>送信された事故画と文章から、AIがユニークなタイトルを生成します。</p>
+  <div class="flex items-center justify-between sm:col-span-2">
+    <p>
+      事故画と文章を送信すると<br>
+      AIがユニークな<strong>タイトル</strong>を生成します。
+    </p>
   </div>
 <% end %>
