@@ -18,6 +18,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # アップロードを許可するファイルの拡張子を指定
   def extension_allowlist
-    %w[jpg jpeg png gif]
+    %w[jpg jpeg png gif heic webp]
   end
 end
