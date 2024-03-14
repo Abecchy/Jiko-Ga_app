@@ -23,6 +23,8 @@ ja:
     password_reset: パスワード再設定
     new_password: 新しいパスワード
     new_password_confirmation: 新しいパスワード確認
+    follow: フォローする
+    unfollow: フォロー中
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"
@@ -112,3 +114,8 @@ ja:
     update:
       success: パスワードを変更しました
       failure: パスワードを変更できませんでした
+  relationships:
+    create:
+      success: フォローしました
+    destroy:
+      success: フォロー解除しました

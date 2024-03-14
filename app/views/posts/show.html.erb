@@ -8,6 +8,7 @@
 
   <div class="mx-auto max-w-screen-md px-4 md:px-8">
     <p class="sm:text-lg"><%= @post.user.name %></p>
+    <%= render 'users/follow_button' if logged_in? %>
     <p class="sm:text-lg"><%= l @post.created_at, format: :long %></p>
 
     <div class="relative mb-6 overflow-hidden rounded-lg shadow-lg md:mb-8">

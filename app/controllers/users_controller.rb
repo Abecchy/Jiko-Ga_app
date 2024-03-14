@@ -16,6 +16,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following.order(created_at: :desc).page(params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.order(created_at: :desc).page(params[:page])
+    render 'show_follow'
+  end
+
   private
 
   def user_params
