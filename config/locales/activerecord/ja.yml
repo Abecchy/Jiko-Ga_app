@@ -8,14 +8,14 @@ ja:
       pet: ペット
     attributes:
       user:
-        name: お名前
+        name: ニックネーム
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
         avatar: アバター
       post:
         title: タイトル
-        body: 状況説明
+        body: どんな写真？
         post_image: 事故画
       comment:
         body: コメント

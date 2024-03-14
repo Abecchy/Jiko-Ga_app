@@ -1,0 +1,3 @@
+<%= link_to relationships_path(followed_id: @post.user.id), class: 'btn btn-primary', data: { turbo_method: :post } do %>
+  <%= t('defaults.follow') %>
+<% end %>

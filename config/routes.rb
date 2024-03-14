@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create] do
+    member do
+      get :following, :followers
+    end
+  end
   resources :posts do
     resources :comments, only: %i[create destroy], shallow: true
     get 'likes', on: :collection
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
   resource :profile, only: %i[show edit update]
   resources :password_resets, only: %i[new create edit update]
+  resources :relationships, only: %i[create destroy]
 
   get 'login', to: 'user_sessions#new'
 	post 'login', to: 'user_sessions#create'
