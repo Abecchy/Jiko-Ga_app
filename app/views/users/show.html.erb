@@ -1,0 +1,40 @@
+<% content_for(:title, "#{@user.name}") %>
+
+<div class="py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mb-10 md:mb-16">
+      <%= link_to t('defaults.back'), users_path, class: 'btn btn-outline btn-primary' %>
+      <h2 class="mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl"><%= t('.title') %></h2>
+    </div>
+
+    <div class="bg-secondary mx-auto grid max-w-screen-md gap-4 border border-primary rounded-lg shadow">
+      <div class="flex flex-col items-center pb-10">
+        <%= image_tag @user.avatar.url, class: 'w-24 h-24 mb-3 rounded-full shadow-lg' %>
+
+        <h5 class="mb-1 text-xl"><%= @user.name %></h5>
+      </div>
+
+      <% if @user.pets.present? %>
+        <div class="mb-2 md:mb-3 divider">
+          <h2 class="text-center text-xl font-bold lg:text-xl"><%= t('defaults.pet_profile') %></h2>
+        </div>
+
+        <% @user.pets.each do |pet| %>
+          <div class="flex flex-col items-center pb-10">
+            <%= image_tag pet.pet_avatar.url, class: 'w-24 h-24 mb-3 rounded-full shadow-lg' %>
+
+            <h5 class="mb-1 text-lg">
+              <% if pet.gender == 'male' %>
+                <p><%= pet.name %> くん</p>
+              <% else %>
+                <p><%= pet.name %> ちゃん</p>
+              <% end %>
+              <p><%= pet.age %> 才</p>
+              <p><%= pet.gender_i18n %></p>
+            </h5>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
