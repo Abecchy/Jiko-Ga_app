@@ -118,3 +118,8 @@ ja:
     update:
       success: パスワードを変更しました
       failure: パスワードを変更できませんでした
+  relationships:
+    create:
+      success: フォローしました
+    destroy:
+      success: フォロー解除しました

@@ -8,6 +8,10 @@
     </div>
 
     <div class="bg-secondary mx-auto grid max-w-screen-md gap-4 border border-primary rounded-lg shadow">
+      <div class="flex justify-end px-4 pt-4">
+        <%= render 'follow_button', user: @user %>
+      </div>
+
       <div class="flex flex-col items-center pb-10">
         <%= image_tag @user.avatar.url, class: 'w-24 h-24 mb-3 rounded-full shadow-lg' %>
 
