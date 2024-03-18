@@ -30,9 +30,9 @@
     </div>
   <% end %>
 <% else %>
-  <%= link_to user_path(user) do %>
-    <div class="group relative flex h-auto items-end overflow-hidden rounded-lg bg-secondary p-4 border border-primary">
-      <div class="flex flex-col gap-4 w-52">
+  <div class="group relative flex h-auto items-end overflow-hidden rounded-lg bg-secondary p-4 border border-primary">
+    <div class="flex flex-col gap-4 w-52">
+      <%= link_to user_path(user) do %>
         <div class="flex gap-4 items-center">
           <div class="skeleton rounded-full shrink-0">
             <%= image_tag user.avatar.url, class: 'w-20 h-20 rounded-full' %>
@@ -44,20 +44,24 @@
             </div>
           </div>
         </div>
+      <% end %>
 
-        <div class="skeleton h-auto w-full flex gap-4 items-center">
-          <% user.pets.each do |pet| %>
-            <%= image_tag pet.pet_avatar.url, class: 'w-16 h-16 rounded-full' %>
-            <% if pet.gender == 'male' %>
-              <%= pet.name %> くん<br>
-            <% else %>
-              <%= pet.name %> ちゃん<br>
-            <% end %>
-            <%= pet.age %> 才<br>
-            <%= pet.gender_i18n %>
+      <div class="flex justify-end">
+        <%= render 'follow_button', user: user %>
+      </div>
+
+      <div class="skeleton h-auto w-full flex gap-4 items-center">
+        <% user.pets.each do |pet| %>
+          <%= image_tag pet.pet_avatar.url, class: 'w-16 h-16 rounded-full' %>
+          <% if pet.gender == 'male' %>
+            <%= pet.name %> くん<br>
+          <% else %>
+            <%= pet.name %> ちゃん<br>
           <% end %>
-        </div>
+          <%= pet.age %> 才<br>
+          <%= pet.gender_i18n %>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
 <% end %>
