@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
-  def show; end
+  def show
+    @posts = current_user.posts.order(created_at: :desc).page(params[:page])
+  end
 
   def edit
     @user = User.find(current_user.id)
