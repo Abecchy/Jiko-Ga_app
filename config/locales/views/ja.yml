@@ -13,7 +13,8 @@ ja:
     edit: 編集する
     update: 更新する
     delete: 削除する
-    search_word: タイトル、状況で検索
+    search_post: タイトル、状況で検索
+    search_user: 名前で検索
     delete_confirm: 削除しますか？
     back: 一覧に戻る
     cancel: キャンセル
