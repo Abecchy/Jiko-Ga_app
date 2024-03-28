@@ -24,7 +24,7 @@ class PostsController < ApplicationController
       if post_count < 3
         @post.title = OpenAi.generate_title(@post.body, @post.post_image) if @post.post_image.present? && @post.body.present?
         @post.save
-        redirect_to posts_path, success: t('defaults.flash_message.created', item: Post.model_name.human)
+        redirect_to post_path(@post), success: t('defaults.flash_message.created', item: Post.model_name.human)
       else
         redirect_to posts_path, danger: t('defaults.flash_message.limit')
       end
