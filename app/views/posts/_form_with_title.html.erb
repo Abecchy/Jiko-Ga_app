@@ -21,6 +21,13 @@
     <%= f.text_area :body, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', row: '10', style: 'height: 200px' %>
   </div>
 
+  <%= f.fields_for :tags do |i| %>
+    <div class="sm:col-span-2">
+      <%= i.label :name, 'タグ', class: 'mb-2 inline-block text-sm sm:text-base' %>
+      <%= i.text_field :name, value: @tags, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+    </div>
+  <% end %>
+
   <div class="flex items-center justify-between sm:col-span-2">
     <%= f.submit t('defaults.update'), class: 'btn btn-accent' %>
 
