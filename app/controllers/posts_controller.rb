@@ -10,20 +10,24 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
+    @tags = @post.tags
   end
 
   def new
     @post = Post.new
+    @tags = @post.tags.map(&:name).join(',')
   end
 
   def create
     @post = current_user.posts.build(post_params)
+    tag_list = params[:post][:tags][:name].split(',').uniq
     post_count = current_user.posts.created_today.count
 
     if @post.post_image.present? && @post.body.present?
       if post_count < 3
         @post.title = OpenAi.generate_title(@post.body, @post.post_image) if @post.post_image.present? && @post.body.present?
         @post.save
+        @post.save_tags(tag_list)
         redirect_to post_path(@post), success: t('defaults.flash_message.created', item: Post.model_name.human)
       else
         redirect_to posts_path, danger: t('defaults.flash_message.limit')
@@ -46,13 +50,16 @@ class PostsController < ApplicationController
 
   def edit
     @post = current_user.posts.find(params[:id])
+    @tags = @post.tags.map(&:name).join(',')
   end
 
   def update
     @post = current_user.posts.find(params[:id])
+    latest_tags = params[:post][:tags][:name].split(',').uniq
 
     if @post.update(post_params)
-      redirect_to @post, success: t('defaults.flash_message.updated', item: Post.model_name.human)
+      @post.update_tags(latest_tags)
+      redirect_to post_path(@post), success: t('defaults.flash_message.updated', item: Post.model_name.human)
     else
       flash.now[:danger] = t('defaults.flash_message.not_updated', item: Post.model_name.human)
       render :edit, status: :unprocessable_entity
