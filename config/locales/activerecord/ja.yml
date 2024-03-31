@@ -6,13 +6,14 @@ ja:
       comment: コメント
       like: いいね
       pet: ペット
+      tag: タグ
     attributes:
       user:
         name: ニックネーム
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
-        avatar: アバター
+        avatar: プロフィール画像
       post:
         title: タイトル
         body: どんな写真？
@@ -24,6 +25,8 @@ ja:
         age: 年齢
         gender: 性別
         pet_avatar: ペット画像
+      tag:
+        name: タグ名
   enums:
     pet:
       gender:

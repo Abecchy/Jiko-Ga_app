@@ -18,8 +18,8 @@
 
   <%= f.fields_for :tags do |i| %>
     <div class="sm:col-span-2">
-      <%= i.label :name, 'タグ', class: 'mb-2 inline-block text-sm sm:text-base' %>
-      <%= i.text_field :name, value: @tags, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring' %>
+      <%= i.label :name, t('defaults.tag'), class: 'mb-2 inline-block text-sm sm:text-base' %>
+      <%= i.text_field :name, value: @tags, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', placeholder: '例: 柴犬,変顔' %>
     </div>
   <% end %>
 
