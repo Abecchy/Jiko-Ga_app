@@ -2,8 +2,14 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index]
 
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    if params[:tag_name]
+      tag = Tag.find_by(name: params[:tag_name])
+      @q = tag.posts.ransack(params[:q])
+      @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]) if tag.posts.present?
+    else
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    end
   end
 
   def show
