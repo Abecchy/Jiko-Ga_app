@@ -78,6 +78,11 @@ class PostsController < ApplicationController
     redirect_to posts_path, success: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other
   end
 
+  def search
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+  end
+
   def likes
     @q = current_user.like_posts.ransack(params[:q])
     @like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
