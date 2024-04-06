@@ -17,6 +17,7 @@ ja:
     search_user: 名前で検索
     delete_confirm: 削除しますか？
     back: 一覧に戻る
+    back_detail: 事故画詳細へ
     cancel: キャンセル
     pet_profile: ペットプロフィール
     edit_pet_profile: ペットプロフィール編集
@@ -80,6 +81,9 @@ ja:
     create:
       success: 登録が完了しました
       failure: 登録に失敗しました
+    likes:
+      title: いいねユーザー一覧
+      no_result: いいねしたユーザーはいません
   user_sessions:
     new:
       title: ログイン

@@ -26,6 +26,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def likes
+    @post = Post.find(params[:id])
+    @liked_users = @post.liked_users.order(created_at: :desc).page(params[:page])
+  end
+
   def following
     @title = 'フォロー中'
     @no_result = 'フォロー中のユーザーはいません'
