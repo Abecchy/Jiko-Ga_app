@@ -1,0 +1,20 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <%= link_to t('defaults.back_detail'), post_path(@post), class: 'btn btn-outline btn-primary' %>
+    <h2 class="mb-8 text-center text-2xl font-bold md:mb-12 lg:text-3xl"><%= t('.title') %></h2>
+  </div>
+
+  <% if @post.liked_users.present? %>
+    <div class="m-8 flex grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3">
+      <% @post.liked_users.each do |user| %>
+        <%= render 'user', user: user %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center font-bold text-gray-400"><%= t('.no_result') %></div>
+  <% end %>
+
+  <%= paginate @liked_users %>
+</div>

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   resources :users, only: %i[index show new create] do
     member do
+      get :likes
+    end
+    member do
       get :following, :followers
     end
   end

@@ -29,6 +29,9 @@
             </svg>
             <%= t('defaults.delete') %>
           <% end %>
+          <%= link_to likes_user_path(post), id: "likes-count-#{post.id}", class: 'btn btn-ghost' do %>
+            <%= post.likes.count %> いいね
+          <% end %>
         </div>
       <% else %>
         <div class="flex justify-end">
