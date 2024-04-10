@@ -15,6 +15,17 @@
       <%= render 'search_form', q: @q, url: search_posts_path %>
     </div>
 
+    <div class="flex flex-row-reverse m-8 dropdown">
+      <div tabindex="0" role="button" class="btn btn-primary"><%= t('defaults.sort') %></div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-12 z-[1] p-2 shadow bg-base-100 border border-primary rounded-box w-52">
+        <li>
+          <%= link_to t('defaults.latest'), posts_path(latest: "true") %>
+          <%= link_to t('defaults.old'), posts_path(old: "true") %>
+          <%= link_to t('defaults.like_count'), posts_path(order_by_like_count: "true") %>
+        </li>
+      </ul>
+    </div>
+
     <div class="m-8 flex grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3">
       <%= render @posts %>
     </div>

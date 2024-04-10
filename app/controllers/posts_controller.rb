@@ -4,8 +4,22 @@ class PostsController < ApplicationController
   def index
     if params[:tag_name]
       tag = Tag.find_by(name: params[:tag_name])
-      @q = tag.posts.ransack(params[:q])
-      @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]) if tag.posts.present?
+
+      if tag.present?
+        @q = tag.posts.ransack(params[:q])
+        @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]) if tag.posts.present?
+      else
+        redirect_to posts_path, warning: "タグ「#{params[:tag_name]}」に関する事故画はありませんでした"
+      end
+    elsif params[:latest]
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true).includes(:user).latest.page(params[:page])
+    elsif params[:old]
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true).includes(:user).old.page(params[:page])
+    elsif params[:order_by_like_count]
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true).includes(:user).order_by_like_count.page(params[:page])
     else
       @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])

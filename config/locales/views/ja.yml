@@ -28,6 +28,10 @@ ja:
     follow: フォローする
     unfollow: フォロー中
     tag: タグ（「 , 」で区切って複数作成できます）
+    sort: ▶︎並び替え
+    latest: 新しい順
+    old: 古い順
+    like_count: 人気順
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"
