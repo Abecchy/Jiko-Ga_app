@@ -13,6 +13,22 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: { maximum: 65_535 }
 
   scope :created_today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+  scope :order_by_like_count, -> do
+    sql = <<~SQL
+      LEFT OUTER JOIN (
+        SELECT likes.post_id, COUNT(*) AS cnt
+        FROM likes
+        GROUP BY likes.post_id
+      ) like_counts
+      ON like_counts.post_id = posts.id
+    SQL
+    joins(sql)
+      .select('posts.*, COALESCE(like_counts.cnt, 0) AS like_count')
+      .order('like_count DESC')
+      .order(id: :desc)
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title body]
