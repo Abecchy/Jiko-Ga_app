@@ -17,7 +17,9 @@
       <%= render 'shared/before_login_header' %>
     <% end %>
 
-    <%= render 'shared/flash_message' %>
+    <div id="flash-messages">
+      <%= render 'shared/flash_message' %>
+    </div>
 
     <%= yield %>
 
