@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend 'flash-messages', partial: 'shared/flash_message' %>
+
+<% unless @comment.errors.any? %>
+  <%= turbo_stream.replace "comment-#{@comment.id}" do %>
+    <%= render 'comment', comment: @comment %>
+  <% end %>
+<% end %>

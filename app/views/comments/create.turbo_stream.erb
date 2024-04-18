@@ -1,8 +1,10 @@
-<% if @comment.errors.present? %>
+<% if @comment.errors.any? %>
   <%= turbo_stream.replace 'comment-form' do %>
     <%= render 'form', post: @comment.post, comment: @comment %>
   <% end %>
 <% else %>
+  <%= turbo_stream.prepend 'flash-messages', partial: 'shared/flash_message' %>
+
   <%= turbo_stream.remove 'no-result' %>
 
   <%= turbo_stream.append 'table-comment' do %>

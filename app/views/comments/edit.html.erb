@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "comment-#{@comment.id}" do %>
+  <div id="comment-form">
+    <%= form_with model: @comment, class: 'mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2' do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div class="flex items-center sm:col-span-2 gap-4">
+        <%= f.text_area :body, class: 'bg-primary w-1/2 input input-bordered text-gray-800', placeholder: t('defaults.input_comment') %>
+
+        <%= f.submit t('defaults.update'), class: 'btn btn-accent' %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to t('defaults.cancel'), post_path(@post) %>
+<% end %>
