@@ -15,7 +15,7 @@ ja:
     delete: 削除する
     search_post: タイトル、状況で検索
     search_user: 名前で検索
-    delete_confirm: 削除しますか？
+    delete_confirm: 本当に削除しますか？
     back: 一覧に戻る
     back_detail: 事故画詳細へ
     cancel: キャンセル
@@ -32,6 +32,8 @@ ja:
     latest: 新しい順
     old: 古い順
     like_count: 人気順
+    like_users: いいねした人
+    comments: コメント数
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"
