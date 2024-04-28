@@ -8,25 +8,30 @@
   <div class="relative flex w-full flex-col rounded-lg p-4 mt-4 mb-10 text-center glass">
     <ul>
       <li>
-        <% if post.user == current_user %>
+        <% if current_user.own?(post) %>
           <%= link_to profile_path, class: 'flex justify-center items-center gap-4 btn btn-link' do %>
             <%= image_tag post.user.avatar.url, class: 'rounded-full w-10 h-10 mb-2' %>
             <div class="text-gray-300 mb-2"><%= post.user.name %></div>
           <% end %>
         <% else %>
-          <%= link_to user_path(post.user), class: 'flex justify-center items-center btn btn-link' do %>
-            <%= image_tag post.user.avatar.url, class: 'rounded-full w-10 h-10 mx-2 mb-2' %>
-            <div class="text-gray-300 mx-2 mb-2"><%= post.user.name %></div>
-          <% end %>
+          <div class="flex justify-center items-center">
+            <%= link_to user_path(post.user), class: 'btn btn-link' do %>
+              <%= image_tag post.user.avatar.url, class: 'rounded-full w-10 h-10 mx-2 mb-2' %>
+              <div class="text-gray-300 mx-2 mb-2"><%= post.user.name %></div>
+            <% end %>
+
+            <%= render 'users/follow_button', user: post.user %>
+          </div>
         <% end %>
       </li>
       <li class="text-lg font-bold lg:text-xl"><%= post.title %></li>
       <li class="text-gray-300"><%= l post.created_at, format: :long %></li>
+
       <% if post.tags.present? %>
         <li>
-          <div class="flex justify-center card-footer mt-4">
+          <div class="flex justify-center card-footer mt-4 gap-2">
             <% post.tags.each do |tag| %>
-              <%= link_to tag.name, posts_path(tag_name: tag.name), class: 'badge badge-primary mx-1' %>
+              <%= link_to tag.name, posts_path(tag_name: tag.name), class: 'badge badge-primary' %>
             <% end %>
           </div>
         </li>
@@ -37,7 +42,7 @@
       <% if current_user.own?(post) %>
         <div class="flex justify-end mt-4">
           <div class="tooltip" data-tip=<%= t('defaults.like_users') %>>
-            <%= link_to likes_user_path(post), id: "likes-count-#{post.id}", class: 'btn btn-ghost mr-1' do %>
+            <%= link_to likes_user_path(post), class: 'btn btn-ghost mr-1' do %>
               <svg class="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
               </svg>
