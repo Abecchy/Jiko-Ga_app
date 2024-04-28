@@ -1,16 +1,36 @@
-<%= turbo_frame_tag "comment-#{comment.id}" do %>
-  <div class="chat chat-start">
-    <div class="chat-image avatar">
-      <div class="w-10 rounded-full">
-        <%= image_tag comment.user.avatar.url, class: 'rounded-circle', size: '50x50' %>
-      </div>
+<div class="chat chat-start my-4">
+  <div class="chat-image avatar">
+    <div class="w-10 rounded-full">
+      <% if current_user.own?(comment) %>
+        <%= link_to profile_path do %>
+          <%= image_tag comment.user.avatar.url %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(comment.user) do %>
+          <%= image_tag comment.user.avatar.url %>
+        <% end %>
+      <% end %>
     </div>
-    <div class="chat-header">
-      <%= comment.user.name %>
-      <div class="text-xs opacity-50"><%= l comment.created_at, format: :short %></div>
-    </div>
+  </div>
 
-    <div class="chat-bubble chat-bubble-primary">
+  <div class="chat-header">
+    <% if current_user.own?(comment) %>
+      <%= link_to profile_path do %>
+        <div class="text-xs text-gray-300"><%= comment.user.name %></div>
+      <% end %>
+    <% else %>
+      <div class="flex justify-center items-center gap-4">
+        <%= link_to user_path(comment.user) do %>
+          <div class="text-xs text-gray-300"><%= comment.user.name %></div>
+        <% end %>
+
+        <%= render 'users/follow_button', user: comment.user %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="chat-bubble chat-bubble-primary my-1">
+    <%= turbo_frame_tag "comment-#{comment.id}" do %>
       <%= simple_format(comment.body) %>
 
       <% if current_user.own?(comment) %>
@@ -38,6 +58,10 @@
           </li>
         </ul>
       <% end %>
-    </div>
+    <% end %>
   </div>
-<% end %>
+
+  <div class="chat-footer">
+    <div class="text-xs opacity-50"><%= l comment.created_at, format: :short %></div>
+  </div>
+</div>

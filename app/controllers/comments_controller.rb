@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment.destroy!
+    @comments = @comment.post.comments.includes(:user).order(created_at: :asc)
     flash.now[:success] = t('defaults.flash_message.deleted', item: Comment.model_name.human)
   end
 
