@@ -22,24 +22,136 @@
     <%= link_to t('.more'), posts_path, class: 'btn btn-link absolute end-2.5 mb-8 text-xl md:mb-12 lg:text-2xl' %>
   </div>
 
-  <div class="carousel w-full pt-24">
-    <div id="slide1" class="carousel-item relative w-full">
-      <div class="m-8 mx-auto flex grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3">
-        <% @new_posts.each do |new_post| %>
-          <%= link_to post_path(new_post) do %>
-            <div class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-              <%= image_tag new_post.post_image.url, class: 'absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110' %>
+  <div class="m-8 flex grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3">
+    <% @new_posts.each do |new_post| %>
+      <div class="mt-10">
+        <%= link_to post_path(new_post) do %>
+          <div class="group relative flex h-96 items-end overflow-hidden rounded-lg border border-primary p-4 shadow-lg">
+            <%= image_tag new_post.post_image.url, class: 'absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110' %>
+          </div>
+        <% end %>
 
-              <div class="relative flex w-full flex-col rounded-lg p-4 text-center glass">
-                <span class="text-gray-800"><%= new_post.user.name %></span>
-                <span class="text-lg font-bold text-gray-800 lg:text-xl"><%= new_post.title %></span>
-                <span class="text-gray-800"><%= l new_post.created_at, format: :long %></span>
+        <div class="relative flex w-full flex-col rounded-lg p-4 mt-4 mb-10 text-center glass">
+          <ul>
+            <li>
+              <% if logged_in? %>
+                <% if current_user.own?(new_post) %>
+                  <%= link_to profile_path, class: 'flex justify-center items-center gap-4 btn btn-link' do %>
+                    <%= image_tag new_post.user.avatar.url, class: 'rounded-full w-10 h-10 mb-2' %>
+                    <div class="text-gray-300 mb-2"><%= new_post.user.name %></div>
+                  <% end %>
+                <% else %>
+                  <div class="flex justify-center items-center">
+                    <%= link_to user_path(new_post.user), class: 'btn btn-link' do %>
+                      <%= image_tag new_post.user.avatar.url, class: 'rounded-full w-10 h-10 mx-2 mb-2' %>
+                      <div class="text-gray-300 mx-2 mb-2"><%= new_post.user.name %></div>
+                    <% end %>
+
+                    <%= render 'users/follow_button', user: new_post.user %>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="flex justify-center items-center">
+                  <%= link_to user_path(new_post.user), class: 'btn btn-link' do %>
+                    <%= image_tag new_post.user.avatar.url, class: 'rounded-full w-10 h-10 mx-2 mb-2' %>
+                    <div class="text-gray-300 mx-2 mb-2"><%= new_post.user.name %></div>
+                  <% end %>
+                </div>
+              <% end %>
+            </li>
+            <li class="text-lg font-bold lg:text-xl"><%= new_post.title %></li>
+            <li class="text-gray-300"><%= l new_post.created_at, format: :long %></li>
+
+            <% if new_post.tags.present? %>
+              <li>
+                <div class="flex justify-center card-footer mt-4 gap-2">
+                  <% new_post.tags.each do |tag| %>
+                    <%= link_to tag.name, posts_path(tag_name: tag.name), class: 'badge badge-primary' %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+
+          <% if logged_in? %>
+            <% if current_user.own?(new_post) %>
+              <div class="flex justify-end mt-4">
+                <div class="tooltip" data-tip=<%= t('defaults.like_users') %>>
+                  <%= link_to likes_user_path(new_post), class: 'btn btn-ghost mr-1' do %>
+                    <svg class="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    <%= new_post.likes.count %>
+                  <% end %>
+                </div>
+
+                <div class="tooltip" data-tip=<%= t('defaults.comments') %>>
+                  <%= link_to post_path(new_post), class: 'btn btn-ghost mx-1' do %>
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                    <%= new_post.comments.count %>
+                  <% end %>
+                </div>
+
+                <div class="tooltip" data-tip=<%= t('defaults.edit') %>>
+                  <%= link_to edit_post_path(new_post), id: "button-edit-#{new_post.id}", class: 'btn btn-secondary mx-1' do %>
+                    <svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 20h9" />
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg>
+                  <% end %>
+                </div>
+
+                <div class="tooltip" data-tip=<%= t('defaults.delete') %>>
+                  <%= link_to post_path(new_post), id: "button-delete-#{new_post.id}", class: 'btn btn-ghost bg-red-800 ml-1', data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
+                    <svg class="h-4 w-4 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6" />
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                      <line x1="10" y1="11" x2="10" y2="17" />
+                      <line x1="14" y1="11" x2="14" y2="17" />
+                    </svg>
+                  <% end %>
+                </div>
+              </div>
+            <% else %>
+              <div class="flex justify-end mt-4">
+                <%= render 'posts/like_button', post: new_post %>
+
+                <div class="tooltip" data-tip=<%= t('defaults.comments') %>>
+                  <%= link_to post_path(new_post), class: 'btn btn-ghost ml-2' do %>
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                    <%= new_post.comments.count %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="flex justify-end mt-4">
+              <div class="tooltip" data-tip=<%= t('defaults.like_users') %>>
+                <%= link_to likes_user_path(new_post), class: 'btn btn-ghost mr-1' do %>
+                  <svg class="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
+                  <%= new_post.likes.count %>
+                <% end %>
+              </div>
+
+              <div class="tooltip" data-tip=<%= t('defaults.comments') %>>
+                <%= link_to post_path(new_post), class: 'btn btn-ghost mx-1' do %>
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                  </svg>
+                  <%= new_post.comments.count %>
+                <% end %>
               </div>
             </div>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 
