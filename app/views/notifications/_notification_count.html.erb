@@ -1,0 +1,5 @@
+<%= turbo_frame_tag 'notification_count' do %>
+  <span class="badge badge-primary badge-sm">
+    <%= current_user.received_notifications.unread.size %>
+  </span>
+<% end %>

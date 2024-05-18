@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
   resources :password_resets, only: %i[new create edit update]
   resources :relationships, only: %i[create destroy]
+  resources :notifications, only: %i[index update] do
+    collection do
+      delete :mark_all_as_read
+    end
+  end
 
   get 'login', to: 'user_sessions#new'
 	post 'login', to: 'user_sessions#create'

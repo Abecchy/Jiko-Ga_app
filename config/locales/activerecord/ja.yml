@@ -7,6 +7,7 @@ ja:
       like: いいね
       pet: ペット
       tag: タグ
+      notification: 通知
     attributes:
       user:
         name: ニックネーム
@@ -32,3 +33,8 @@ ja:
       gender:
         male: 男の子
         female: 女の子
+    notification:
+      action_type:
+        commented_on_the_post: あなたの投稿にコメントしました
+        liked_the_post: あなたの投稿にいいねしました
+        followed_you: あなたをフォローしました
