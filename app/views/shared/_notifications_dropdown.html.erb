@@ -1,0 +1,20 @@
+<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 border border-primary rounded-box w-80">
+  <li class="flex justify-center items-center font-semibold"><%= t('defaults.notification') %></li>
+  <div class="border-b border-primary mt-2 mb-4"></div>
+
+  <%= turbo_frame_tag 'notifications' do %>
+    <% if @notifications.present? %>
+      <%= link_to t('defaults.mark_all_as_read'), mark_all_as_read_notifications_path,
+        class: 'btn btn-primary btn-sm mx-auto mb-4',
+        method: :delete,
+        remote: true,
+        data: {turbo_method: :delete } %>
+
+      <% @notifications.each do |notification| %>
+        <%= render 'notifications/notification', { notification: notification } %>
+      <% end %>
+    <% else %>
+      <%= render 'notifications/no_notification' %>
+    <% end %>
+  <% end %>
+</ul>

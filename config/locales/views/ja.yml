@@ -34,6 +34,9 @@ ja:
     like_count: 人気順
     like_users: いいねした人
     comments: コメント数
+    notification: 通知
+    no_notification: 通知がありません
+    mark_all_as_read: すべて既読にする
     flash_message:
       require_login: ログインしてください
       created: "%{item}を作成しました"

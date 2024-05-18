@@ -1,0 +1,18 @@
+<%= turbo_frame_tag dom_id(notification) do %>
+  <li data-notification-id="<%= notification.id %>" class="<%= notification.read ? '' : 'unread' %> dropdown-item">
+    <%= link_to notification_path(notification),
+      method: :patch,
+      data: { turbo_method: :patch } do %>
+
+      <svg class="h-6 w-6 text-teal-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+
+      <%= notification.sender.name %> さんが<br>
+      <%= notification.action_type_i18n %>
+
+      <span class="notification-time"><%= time_ago_in_words(notification.created_at) %> 前</span>
+    <% end %>
+  </li>
+<% end %>
