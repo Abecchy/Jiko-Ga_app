@@ -73,6 +73,9 @@ gem 'fog-aws'
 
 gem "aws-sdk-s3", require: false
 
+# パンくずリスト
+gem 'gretel'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
