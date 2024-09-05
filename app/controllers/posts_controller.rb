@@ -36,6 +36,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @tags = @post.tags.map(&:name).join(',')
+    @pets = current_user.pets
   end
 
   def create
@@ -48,6 +49,7 @@ class PostsController < ApplicationController
         @post.title = OpenAi.generate_title(@post.body, @post.post_image) if @post.post_image.present? && @post.body.present?
         @post.save
         @post.save_tags(tag_list)
+        @post.pets << Pet.where(id: params[:post][:pet_ids])
         redirect_to post_path(@post), success: t('defaults.flash_message.created', item: Post.model_name.human)
       else
         redirect_to posts_path, danger: t('defaults.flash_message.limit')
@@ -55,14 +57,17 @@ class PostsController < ApplicationController
     elsif @post.post_image.blank? && @post.body.blank?
       @post.errors.add(:post_image, 'を選択してください')
       @post.errors.add(:body, 'を入力してください')
+      @pets = current_user.pets
       flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     elsif @post.body.present?
       @post.errors.add(:post_image, 'を選択してください')
+      @pets = current_user.pets
       flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     else
       @post.errors.add(:body, 'を入力してください')
+      @pets = current_user.pets
       flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
@@ -71,6 +76,7 @@ class PostsController < ApplicationController
   def edit
     @post = current_user.posts.find(params[:id])
     @tags = @post.tags.map(&:name).join(',')
+    @pets = current_user.pets
   end
 
   def update
@@ -79,8 +85,10 @@ class PostsController < ApplicationController
 
     if @post.update(post_params)
       @post.update_tags(latest_tags)
+      @post.pets = Pet.where(id: params[:post][:pet_ids])
       redirect_to post_path(@post), success: t('defaults.flash_message.updated', item: Post.model_name.human)
     else
+      @pets = current_user.pets
       flash.now[:danger] = t('defaults.flash_message.not_updated', item: Post.model_name.human)
       render :edit, status: :unprocessable_entity
     end

@@ -39,6 +39,18 @@
       <p><%= simple_format(@post.body) %></p>
     </div>
 
+    <% if @post.pets.any? %>
+      <h2>関連するペット</h2>
+      <ul>
+        <% @post.pets.each do |pet| %>
+          <li>
+            <%= image_tag pet.pet_avatar.url, class: 'rounded-full w-20 h-20' %>
+            <div class="text-gray-300"><%= pet.name %></div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <% if @tags.present? %>
       <div class="flex justify-center card-footer my-10 gap-2">
         <% @tags.each do |tag| %>
