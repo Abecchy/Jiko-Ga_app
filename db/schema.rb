@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_18_135823) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_05_023232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_18_135823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pets_on_user_id"
+  end
+
+  create_table "post_pets", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "pet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_post_pets_on_pet_id"
+    t.index ["post_id", "pet_id"], name: "index_post_pets_on_post_id_and_pet_id", unique: true
+    t.index ["post_id"], name: "index_post_pets_on_post_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -118,6 +128,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_18_135823) do
   add_foreign_key "notifications", "users", column: "recipient_id"
   add_foreign_key "notifications", "users", column: "sender_id"
   add_foreign_key "pets", "users"
+  add_foreign_key "post_pets", "pets"
+  add_foreign_key "post_pets", "posts"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"

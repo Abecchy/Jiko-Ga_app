@@ -21,6 +21,21 @@
     <%= f.text_area :body, class: 'w-full rounded border bg-gray-50 px-3 py-2 outline-none ring-indigo-300 transition duration-100 focus:ring', row: '10', style: 'height: 200px' %>
   </div>
 
+  <div class="sm:col-span-2">
+    <h3>ペットを選択</h3>
+    <% if current_user.pets.any? %>
+      <% pets.each do |pet| %>
+        <div>
+          <%= check_box_tag "post[pet_ids][]", pet.id, post.pets.include?(pet) %>
+          <%= image_tag pet.pet_avatar.url, class: 'rounded-full w-20 h-20' %>
+          <%= pet.name %>
+        </div>
+      <% end %>
+    <% else %>
+      プロフィールからペットを登録すると、選択できるようになります。
+    <% end %>
+  </div>
+
   <%= f.fields_for :tags do |i| %>
     <div class="sm:col-span-2">
       <%= i.label :name, t('defaults.tag'), class: 'mb-2 inline-block text-sm sm:text-base' %>
